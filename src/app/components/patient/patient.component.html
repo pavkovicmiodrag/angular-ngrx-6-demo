@@ -1,0 +1,9 @@
+<app-list-or-card-view  [(view)]="view"></app-list-or-card-view>
+<div  fxFlex fxLayout="column" fxFlexFill >
+  <!--<div fxLayout="row" class="header" fxFlex="15">-->
+    <!--<filter-textbox  (changed)="filterChanged($event)"></filter-textbox>-->
+  <!--</div>-->
+  <app-form-or-detail-view [patient]="selectedPatient" [(mode)]="mode" ></app-form-or-detail-view>
+</div>
+<ng-template #loading>Loading patients...</ng-template>
+

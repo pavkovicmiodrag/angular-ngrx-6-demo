@@ -1,0 +1,32 @@
+
+<div fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around"  class="card-list-container" >
+<mat-card class="patient-card glass mat-elevation-z0"   *ngFor="let patient of patients$ | async ">
+<mat-card-header>
+<mat-card-title class="title"> {{patient.firstname}} {{patient.middlename}} {{patient.lastname}}</mat-card-title>
+<mat-card-subtitle>{{patient.birthdate}} </mat-card-subtitle>
+</mat-card-header>
+<!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+<mat-card-content>
+<p class="title">
+<i class="material-icons">home</i>
+{{patient.place}}
+</p>
+<p class="title">
+<i class="material-icons">email</i>
+{{patient.email}}
+</p>
+<p class="title">
+<i class="material-icons">contact_phone</i>
+{{patient.phone}}
+</p>
+<p class="title">
+<i class="material-icons">phone_android</i>
+{{patient.mobilephone}}
+</p>
+</mat-card-content>
+<mat-card-footer class="glass">
+<button mat-button (click)="deleteDiagnose(diagnose)"><i class="material-icons primary line-height-mini">delete</i></button>
+<button mat-button><i class="material-icons combo_blue line-height-mini">edit</i></button>
+</mat-card-footer>
+</mat-card>
+</div>

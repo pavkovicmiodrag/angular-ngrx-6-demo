@@ -1,0 +1,88 @@
+// Foreground palette for dark themes.
+@function custom-mat-light-theme-foreground($palette, $default: 500, $lighter: 100, $darker: 700) {
+  $color: mat-color($palette, $default);
+  $color-lighter: mat-color($palette, $lighter);
+  $color-darker: mat-color($palette, $darker);
+  @return (
+    base:              $color,
+    divider:           rgba($color, 0.12),
+    dividers:          rgba($color, 0.12),
+    disabled:          rgba($color, 0.38),
+    disabled-button:   rgba($color, 0.38),
+    disabled-text:     rgba($color, 0.38),
+    hint-text:         rgba($color, 0.38),
+    secondary-text:    rgba($color-lighter, 0.50),
+    icon:              rgba($color, 0.58),
+    icons:             rgba($color, 0.58),
+    text:              rgba($color-darker, 0.87),
+    slider-min:        rgba($color, 0.87),
+    slider-off:        rgba($color, 0.26),
+    slider-off-active: rgba($color, 0.38),
+  );
+};
+// Foreground palette for dark themes.
+@function custom-mat-dark-theme-foreground($palette, $default: 500, $lighter: 100, $darker: 700) {
+  $color: mat-color($palette, $default);
+  $color-lighter: mat-color($palette, $lighter);
+  $color-darker: mat-color($palette, $darker);
+  @return (
+    base:              $color,
+    divider:           rgba($color, 0.12),
+    dividers:          rgba($color, 0.12),
+    disabled:          rgba($color, 0.3),
+    disabled-button:   rgba($color, 0.3),
+    disabled-text:     rgba($color, 0.3),
+    hint-text:         rgba($color, 0.3),
+    secondary-text:    rgba($color-lighter, 0.7),
+    icon:              $color,
+    icons:             $color,
+    text:              $color-darker,
+    slider-min:        $color,
+    slider-off:        rgba($color, 0.3),
+    slider-off-active: rgba($color, 0.3),
+  );
+};
+
+// Background palette for light themes.
+@function custom-mat-light-theme-background($palette, $default: 500, $lighter: 100, $darker: 700) {
+  $color: mat-color($palette, $default);
+  $color-lighter: mat-color($palette, $lighter);
+  $color-darker: mat-color($palette, $darker);
+  @return (
+    status-bar: rgba($color, 300),
+    app-bar:    rgba($color, 100),
+    background: $color,
+    hover:      rgba($color, 0.04),
+    card:       $color,
+    dialog:     $color,
+    disabled-button: $black-12-opacity,
+    raised-button: white,
+    focused-button: $black-6-opacity,
+    selected-button: map_get($mat-grey, 300),
+    selected-disabled-button: map_get($mat-grey, 400),
+    disabled-button-toggle: map_get($mat-grey, 200),
+    unselected-chip: map_get($mat-grey, 300),
+    disabled-list-option: map_get($mat-grey, 200),
+  );
+};
+
+
+// Background palette for dark themes.
+@function custom-mat-dark-theme-background($color) {
+  @return (
+    status-bar: black,
+    app-bar:    map_get($mat-grey, 900),
+    background: #303030,
+    hover:      rgba(white, 0.04), // TODO(kara): check style with Material Design UX
+    card:       map_get($mat-grey, 800),
+    dialog:     map_get($mat-grey, 800),
+    disabled-button: $white-12-opacity,
+    raised-button: map-get($mat-grey, 800),
+    focused-button: $white-6-opacity,
+    selected-button: map_get($mat-grey, 900),
+    selected-disabled-button: map_get($mat-grey, 800),
+    disabled-button-toggle: black,
+    unselected-chip: map_get($mat-grey, 700),
+    disabled-list-option: black,
+  );
+};

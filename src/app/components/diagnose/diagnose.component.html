@@ -1,0 +1,47 @@
+
+<div  fxFlex fxLayout="column" fxFlexFill  *ngIf="!(isLoading$ | async); else loading">
+  <div fxLayout="row" class="header" fxFlex="15">
+    <filter-textbox  (changed)="filterChanged($event)"></filter-textbox>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <mat-card class="diagnose-card glass" >
+      <mat-card-header>
+        <mat-card-title class="title"> Add diagnose</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="diagnoseForm">
+        <mat-form-field>
+          <input matInput placeholder="Diagnose name"  formControlName="diagnoseName">
+        </mat-form-field>
+        <mat-form-field class="">
+          <textarea matInput placeholder="Diagnose descriptiont" formControlName="diagnoseDescription"></textarea>
+        </mat-form-field>
+      </form>
+      <mat-card-footer class="glass">
+        <div class="" fxLayoutAlign="space-around center">
+          <button mat-icon-button color="" (click)="addDiagnose(name)">
+            <mat-icon aria-label="Example icon-button with a heart icon">plus_one</mat-icon>
+          </button>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+    </div>
+  <div fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around"  class="card-list-container" >
+      <mat-card class="diagnose-card glass mat-elevation-z0"   *ngFor="let diagnose of diagnoses$ | async ">
+        <mat-card-header>
+          <mat-card-title class="title"> {{diagnose.name}}</mat-card-title>
+          <!--<mat-card-subtitle>{{diagnose.description}}</mat-card-subtitle>-->
+        </mat-card-header>
+        <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+        <mat-card-content>
+          <p class="title">
+            {{diagnose.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-footer class="glass">
+          <button mat-button (click)="deleteDiagnose(diagnose)"><i class="material-icons primary line-height-mini">delete</i></button>
+          <button mat-button><i class="material-icons combo_blue line-height-mini">edit</i></button>
+        </mat-card-footer>
+      </mat-card>
+  </div>
+</div>
+<ng-template #loading>Loading diagnoses...</ng-template>

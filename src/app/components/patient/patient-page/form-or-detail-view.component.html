@@ -1,0 +1,16 @@
+<div class="" fxLayoutAlign="">
+  <button mat-icon-button color="" (click)="modeChanged('form')">
+    <mat-icon aria-label="Example icon-button with a heart icon">plus_one</mat-icon>
+  </button>
+</div>
+<ng-container [ngSwitch]="mode">
+  <ng-container *ngSwitchCase="'detail'">
+    <!--<ng-container *ngFor="let item of items">-->
+      <!--<ng-container *ngTemplateOutlet="appDetailTemplate"></ng-container>-->
+      <app-patient-detail [patient]="patient" [mode]="mode" (modeChanged)="modeChanged($event)"></app-patient-detail>
+    <!--</ng-container>-->
+  </ng-container>
+  <ng-container *ngSwitchCase="'form'">
+    <app-patient-form  [mode]="mode"  (modeChanged)="modeChanged($event)"></app-patient-form>
+  </ng-container>
+</ng-container>

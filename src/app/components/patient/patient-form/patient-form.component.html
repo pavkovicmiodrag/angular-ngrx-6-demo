@@ -1,0 +1,91 @@
+
+
+<div class="panel panel-info patient-detail-panel">
+  <div class="panel-heading">
+    <h3 class="panel-title" *ngIf="patient">Edit {{ patient.firstname }}</h3>
+    <h3 class="panel-title" *ngIf="!patient">Add new patient</h3>
+  </div>
+  <div class="panel-body">
+    <form novalidate (ngSubmit)="onSubmit()"
+          [formGroup]="myform">
+      <fieldset>
+        <div class="form-group">
+          <label>Patient first name</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="firstname">
+        </div>
+        <div class="form-group">
+          <label>Patient last name</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="lastname">
+        </div>
+        <div class="form-group">
+          <label>Patient middle name</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="middlename">
+        </div>
+        <div class="form-group">
+          <label>Place</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="place">
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="address">
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="gender">
+        </div>
+        <div class="form-group">
+          <label>email</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="email">
+        </div>
+        <div class="form-group">
+          <label>Phone number</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="phone">
+        </div>
+        <div class="form-group">
+          <label>Mobile phone number</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="mobilephone">
+        </div>
+        <div class="form-group">
+          <label>Allergies</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="allergies">
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="notes">
+        </div>
+        <div>
+          <button mat-icon-button color="" (click)="onSubmit()">
+            <mat-icon aria-label="Submit">check</mat-icon>
+          </button>
+          <button mat-icon-button color="" (click)="cancel()">
+            <mat-icon aria-label="Submit">close</mat-icon>
+          </button>
+        </div>
+      </fieldset>
+
+    </form>
+  </div>
+</div>
+

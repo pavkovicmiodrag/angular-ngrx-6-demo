@@ -1,0 +1,38 @@
+.provider-detail-panel{
+  width: 300px;
+  //background-color: #00aced;
+  margin-left: 100px;
+
+}
+.blue {
+  background-color: #00aced;
+}
+.red {
+  background-color: red;
+}
+.orange {
+  background-color: orange;
+}
+.table-user-information > tbody > tr {
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+  border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+  border-top: 0;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1;
+  margin-bottom: 10px;
+  //background-color: red;
+}
+
+.group h1    { flex: 100%; } /* flex: 1 1 100%; */
+.group .item { flex:  50%; } /* flex: 1 1  50%; */

@@ -1,0 +1,117 @@
+<div palette-background="grey:100" class="padded-content-page margin-bottom-20" id="searchFields" ng-if="vm.tableOnly == false">
+  <div class="md-clickable no-highlight" ng-click="vm.collapseSearch = !vm.collapseSearch">
+    <span class="font-size-2" translate>{{vm.searchTitle}}</span>
+    <md-icon class="font-size-3 md-font zmdi material-icons pull-right"
+             ng-class="{'zmdi-chevron-up': !vm.collapseSearch, 'zmdi-chevron-down': vm.collapseSearch === true}"
+             md-font-icon="zmdi" aria-hidden="true"></md-icon>
+  </div>
+
+  <div class="search-criteria-list margin-top-10" ng-if="vm.collapseSearch">
+    <small ng-if="vm.searchCriteriaPresent()">
+            <span ng-repeat="(key, value) in vm.searchRequest.searchCriteria" ng-if="((value !== '' && value.length > 0) || vm.isBoolean(value)) && vm.isFilterParam(key)">
+                <span ng-switch="key">
+                    <span palette-background="blue-grey:500" class="item" ng-switch-default>
+                        <span translate>{{vm.findTranslationForSearchKey(key)}}</span>:
+                        <span ng-switch="vm.findTypeForSearchKey(key)">
+                            <span ng-switch-when="multi-select" ng-repeat="v in value">
+                                <span translate>{{vm.findTranslationForSearchValue(v, key)}}</span><span ng-if="!$last">, </span>
+                            </span>
+                            <span ng-switch-when="multi-select-date" ng-repeat="v in value">
+                                <span>{{v | date}}</span><span ng-if="!$last">, </span>
+                            </span>
+                            <span ng-switch-when="date" translate>
+                                {{value | date}}
+                            </span>
+                            <span ng-switch-when="currency" translate>
+                                {{value | currency:'€'}}
+                            </span>
+                            <span ng-switch-when="tri-state-checkbox" translate>
+                                {{ 'GENERAL.' + value  }}
+                            </span>
+                            <span ng-switch-default translate>
+                                {{vm.findTranslationForSearchValue(value, key)}}
+                            </span>
+                        </span>
+                    </span>
+                </span>
+            </span>
+    </small>
+    <small><a href="" ng-click="vm.clearSearchCriteria(); vm.items = null; vm.collapseSearch = false;" translate>GENERAL.CLEAR_SEARCH_TERMS</a></small>
+  </div>
+
+  <form name="searchForm" ng-submit="vm.doSearch()" ng-show="!vm.collapseSearch" class="collapsible">
+    <div layout="row" layout-wrap layout-align="start">
+      <div flex="30" ng-repeat="searchField in vm.filterParams" ng-switch="searchField.type" ng-class="{'flex-offset-5': ($index) % 3 != 0}">
+        <div ng-switch-when="date">
+          <label class="md-inactive-text" translate>{{searchField.label}}</label>
+          <md-datepicker name="{{searchField.name}}" ng-model="vm.searchRequest.searchCriteria[searchField.name]" local-date autofocus="{{$first}}"></md-datepicker>
+        </div>
+        <div ng-switch-when="multi-select">
+          <md-input-container class="md-icon-right md-block">
+            <label translate>{{searchField.label}}</label>
+            <md-select multiple name="{{searchField.name}}" ng-required="{{searchField.required}}" ng-model="vm.searchRequest.searchCriteria[searchField.name]" ng-attr-autofocus="{{$first}}">
+              <md-option data-option-name="{{searchField.name}}" data-selenium-value="{{searchField.optionLabel ? opt[searchField.optionLabel] : opt}}"
+                         value="{{searchField.optionValue ? opt[searchField.optionValue] : opt}}" ng-repeat="opt in searchField.selectOptions">
+                <span ng-if="searchField.translationPrefix" translate>{{searchField.translationPrefix + '.' + opt}}</span>
+                <span ng-if="!searchField.translationPrefix">{{searchField.optionLabel ? opt[searchField.optionLabel] : opt}}</span>
+              </md-option>
+            </md-select>
+            <md-select-all search-model="vm.searchRequest.searchCriteria[searchField.name]" options="searchField.selectOptions"
+                           value="{{searchField.optionValue}}"></md-select-all>
+          </md-input-container>
+        </div>
+        <div ng-switch-when="select">
+          <md-input-container class="md-block">
+            <label translate>{{searchField.label}}</label>
+            <md-select name="{{searchField.name}}" ng-required="{{searchField.required}}" ng-model="vm.searchRequest.searchCriteria[searchField.name]" ng-attr-autofocus="{{$first}}">
+              <md-option value="{{searchField.optionValue ? opt[searchField.optionValue] : opt}}" ng-repeat="opt in searchField.selectOptions">
+                <span ng-if="searchField.translationPrefix" translate>{{searchField.translationPrefix + '.' + opt}}</span>
+                <span ng-if="!searchField.translationPrefix">{{searchField.optionLabel ? opt[searchField.optionLabel] : opt}}</span>
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <div ng-switch-when="multi-select-date">
+          <md-input-container class="md-icon-right md-block">
+            <label translate>{{searchField.label}}</label>
+            <md-select multiple name="{{searchField.name}}" ng-required="{{searchField.required}}" ng-model="vm.searchRequest.searchCriteria[searchField.name]" ng-attr-autofocus="{{$first}}">
+              <md-option value="{{::opt}}" ng-repeat="opt in searchField.selectOptions">
+                <span>{{opt | date}}</span>
+              </md-option>
+            </md-select>
+            <md-select-all search-model="vm.searchRequest.searchCriteria[searchField.name]" options="searchField.selectOptions"></md-select-all>
+          </md-input-container>
+        </div>
+        <div ng-switch-when="tri-state-checkbox">
+          <md-input-container class="md-block">
+            <md-checkbox
+              ng-model="vm.searchRequest.searchCriteria[searchField.name]"
+              ng-rattr-autofocus="{{$first}}"
+              ng-change="vm.changeTriStateCheckbox(vm.searchRequest.searchCriteria, searchField)"
+              md-indeterminate="vm.searchRequest.searchCriteria[searchField.name] === null">
+              <span translate>{{searchField.label}}</span>
+            </md-checkbox>
+          </md-input-container>
+        </div>
+        <div ng-switch-default>
+          <md-input-container class="md-block">bbb
+            <label><span translate>{{searchField.label}}</span></label>
+            <input type="text" name="{{searchField.name}}"
+                   ng-model="vm.searchRequest.searchCriteria[searchField.name]"
+                   ng-required="{{searchField.required}}"
+                   ng-attr-autofocus="{{$first}}">
+          </md-input-container>
+        </div>
+      </div>
+    </div>
+    <div layout="row" layout-align="start center">
+      <md-button type="submit" class="md-raised md-primary" ng-disabled="searchForm.$invalid" id="sh-search-btn"><span translate>AGREEMENTS.SEARCH_BUTTON</span>
+      </md-button>
+      <small><a href="" ng-click="vm.clearSearchCriteria()" translate>GENERAL.CLEAR_SEARCH_CRITERIA</a></small>
+    </div>
+  </form>
+</div>
+
+<div ng-include="'app/partials/general-search-notification.tmpl.html'" ng-if="vm.items.length === 0"></div>
+
+<div ng-include="'app/directives/sh-table-partial.tmpl.html'"></div>

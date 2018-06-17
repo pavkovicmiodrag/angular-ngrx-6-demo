@@ -1,0 +1,21 @@
+<div class="flex-sidenav"  [@panelWidthTrigger]="state">
+  <div [ngClass]="{'sidenav-header': state == 'expanded'}" [@panelWidthTrigger]="state">
+    <div class="sidenav-header-close" >
+      <mat-icon *ngIf="state == 'expanded'" mat-icon-button (click)="toggleMove()" >close</mat-icon>
+      <mat-icon (click)="toggleMove()"  *ngIf="state == 'collapsed'">arrow_forward</mat-icon>
+    </div>
+    <div *ngIf="state == 'expanded'" class="sidenav-header-text">{{header_title}}</div>
+  </div>
+  <mat-nav-list *ngFor="let link of links" class="side-nav-list">
+    <a [routerLink]="link.url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" mat-list-item  >
+      <div class="side-menu-link-container">
+        <div class="side-menu-icon">
+          <mat-icon  mat-list-icon >{{link.icon}}</mat-icon>
+        </div>
+        <div *ngIf="state == 'expanded'" class="side-menu-link-wrapper">
+          <span matLine  class="side-menu-link">{{link.name}}</span>
+        </div>
+      </div>
+    </a>
+  </mat-nav-list>
+</div>

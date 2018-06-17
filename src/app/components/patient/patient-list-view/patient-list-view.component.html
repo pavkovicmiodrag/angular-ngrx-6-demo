@@ -1,0 +1,46 @@
+<div class=""
+     *ngIf="!(isLoading$ | async); else loading">
+  <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
+    <data-table id="persons-grid"
+                headerTitle="Patients"
+                [items]="items"
+                [itemCount]="itemCount"
+                (reload)="reloadItems($event)"
+
+                (rowClick)="rowClick($event)"
+                (rowDoubleClick)="rowDoubleClick($event)"
+                [rowTooltip]="rowTooltip">
+      <data-table-column
+        [property]="'firstname'"
+        [header]="'First Name'"
+        [sortable]="true"
+        [resizable]="true">
+      </data-table-column>
+      <data-table-column
+        [property]="'middlename'"
+        [header]="'Middle name'"
+        [sortable]="true">
+      </data-table-column>
+      <data-table-column
+        [property]="'lastname'"
+        [header]="'Last Name'"
+        [width]="100"
+        [sortable]="true"
+        [resizable]="true">
+      </data-table-column>
+      <data-table-column
+        property="address"
+        header="Address"
+        width="150px">
+      </data-table-column>
+      <data-table-column
+        [property]="'place'"
+        [header]="'City'"
+        [visible]="true"
+        [sortable]="true">
+      </data-table-column>
+    </data-table>
+  </div>
+</div>
+<ng-template #loading>Loading patients...</ng-template>
+

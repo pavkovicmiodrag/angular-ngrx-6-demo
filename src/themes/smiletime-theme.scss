@@ -1,0 +1,43 @@
+@import "smiletime_palette";
+@import "custom_theming";
+// Define the default theme .
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+// A primary palette: colors most widely used across all screens and components.
+// For smiletime primary color is palette based on yellow #fef200 color.
+$smiletime-primary: mat-palette($mat-smiletime-primary, 500, 100, 700);
+// An accent palette: colors used for the floating action button and interactive elements.
+// For smiletime primary color is palette based on black color.
+$smiletime-accent: mat-palette($mat-smiletime-accent, 500, 100, 700);
+// A warn palette: colors used to convey error state. The warn palette is optional (defaults to red).
+$smiletime-warn: mat-palette($mat-red);
+// Create the theme object (a Sass map containing all of the palettes).
+$smiletime-theme-default: mat-light-theme($smiletime-primary, $smiletime-accent, $smiletime-warn);
+
+// Creates a container object for a light theme to be given to individual component theme mixins.
+@function smiletime-light-theme($primary, $accent, $warn: mat-palette($mat-red)) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: false,
+    foreground: custom-mat-light-theme-foreground($smiletime-accent, 100),
+    background: custom-mat-light-theme-background($mat-smiletime-white),
+  );
+}
+// Creates a container object for a dark theme to be given to individual component theme mixins.
+@function smiletime-dark-theme($primary, $accent, $warn: mat-palette($mat-red)) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: true,
+    foreground: custom-mat-dark-theme-foreground($mat-smiletime-white),
+    background: custom-mat-dark-theme-background($smiletime-accent),
+  );
+}
+
+// You can put any color here. We are using mat-color($smiletime-accent, 100)
+$smiletime-light-theme: smiletime-light-theme($smiletime-primary, $smiletime-accent, $smiletime-warn);
+$smiletime-dark-theme: smiletime-dark-theme($smiletime-primary, $smiletime-accent, $smiletime-warn);

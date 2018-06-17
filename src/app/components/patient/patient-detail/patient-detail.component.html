@@ -1,0 +1,36 @@
+<div fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around"  >
+  <mat-card class="patient-card glass mat-elevation-z0" *ngIf="patient">
+    <mat-card-header>
+      <mat-card-title class="title"> {{patient.firstname}} {{patient.middlename}} {{patient.lastname}}</mat-card-title>
+      <mat-card-subtitle>{{patient.birthdate}} </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="title">
+        <i class="material-icons">home</i>
+        {{patient.place}}
+      </p>
+      <p class="title">
+        <i class="material-icons">email</i>
+        {{patient.email}}
+      </p>
+      <p class="title">
+        <i class="material-icons">contact_phone</i>
+        {{patient.phone}}
+      </p>
+      <p class="title">
+        <i class="material-icons">phone_android</i>
+        {{patient.mobilephone}}
+      </p>
+    </mat-card-content>
+    <mat-card-footer class="glass">
+      <button mat-button (click)="deletePatient(patient)"><i class="material-icons primary line-height-mini">delete</i></button>
+      <button mat-button><i class="material-icons combo_blue line-height-mini">edit</i></button>
+    </mat-card-footer>
+  </mat-card>
+
+    <div class="panel-footer">
+      <!--<a data-original-title="Add Patient" data-toggle="tooltip" type="button" class="btn btn-sm btn-outline-info" (click)="addPatientr()" >-->
+        <!--<i class="fas fa-user-plus fa-4x"></i>-->
+      <!--</a>-->
+    </div>
+</div>

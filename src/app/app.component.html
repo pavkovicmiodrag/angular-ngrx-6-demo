@@ -1,0 +1,33 @@
+
+<div class="main-container smiletime-theme">
+  <!-- side navigation - mini drawer -->
+  <div class="flex-sidenav-container">
+    <!--<app-sidenav [class]="themeSideNav">-->
+    <app-sidenav></app-sidenav>
+    <!--</app-sidenav>-->
+  </div>
+  <div class="main-content">
+  <!-- End side navigation -->
+    <div class="flexbox-item header">
+      <mat-toolbar color="primary" class="mat-elevation-z10">
+        <span>Smile time dashboard</span>
+
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+
+        <!--<span>Right Aligned Text</span>-->
+      </mat-toolbar>
+    </div>
+
+    <div class="flexbox-item fill-area content flexbox-item-grow">
+      <div class="fill-area-content flexbox-item-grow">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <div class="flexbox-item footer">
+      Footer
+    </div>
+  </div>
+</div>
+
