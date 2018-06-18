@@ -11,8 +11,8 @@ export const CREATE_FAILURE = '[Patient] Create Failure';
 export const DELETE = '[Patient] Delete';
 export const DELETE_SUCCESS = '[Patient] Delete Success';
 export const DELETE_FAILURE = '[Patient] Delete Failure';
-export const DELETE_PATIENT_CONFIRMATION = '[Patient] Delete Comfirmation';
-export const DELETE_PATIENT_CONFIRMATION_RESPONSE = '[Patient] Delete Comfirmation Response';
+export const DELETE_PATIENT_CONFIRMATION = '[Patient] Delete Confirmation';
+export const DELETE_PATIENT_CONFIRMATION_RESPONSE = '[Patient] Delete Confirmation Response';
 export class LoadAction implements Action {
   readonly type = LOAD;
 }
